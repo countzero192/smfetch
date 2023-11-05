@@ -4,15 +4,15 @@ kernel="$(uname -s) $(uname -r)"
 distro=$(awk -F'"' '/PRETTY_NAME/{print $2}' /etc/os-release)
 init=$(cut -d' ' -f1 /proc/1/comm)
 up=$(uptime -p | sed 's/up//') # Uptime
-uram=$(free -m | awk '/Mem/{print $3}') # Used memory
-tram=$(free -m | awk '/Mem/{print $2}') # Total memory
-ram="$uram / $tram"
+ram=$(free -m | awk 'NR == 2 {print $3,"/",$2}') # Used memory
+swap=$(free -m | awk 'NR == 3 {print $3,"/",$2}')
 disk=$(df -h --output=used,size / | tail -n1 | awk '{print $1,"/",$2}')
 
 echo "Os: $distro"
 echo "Kernel: $kernel"
 echo "Init system: $init"
 echo "Ram: $ram MB"
+echo "Swap: $swap MB"
 echo "Disk usage: $disk"
 echo "Uptime: $up"
 
