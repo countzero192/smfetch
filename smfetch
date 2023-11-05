@@ -11,6 +11,7 @@ disk=$(df -h --output=used,size / | tail -n1 | awk '{print $1,"/",$2}')
 echo "Os: $distro"
 echo "Kernel: $kernel"
 echo "Init system: $init"
+echo "Shell: $(basename $SHELL)"
 echo "Ram: $ram MB"
 echo "Swap: $swap MB"
 echo "Disk usage: $disk"
