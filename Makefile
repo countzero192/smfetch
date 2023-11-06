@@ -2,7 +2,7 @@ all:
 	@echo 'Run "make install"'
 
 install:
-	@install -v -m 0755 ./smfetch /usr/bin/
+	@install -v -Dm 0755 ./smfetch /usr/bin/
 
 uninstall:
 	@rm -f /usr/bin/smfetch
